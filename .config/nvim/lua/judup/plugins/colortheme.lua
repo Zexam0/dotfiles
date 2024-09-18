@@ -1,6 +1,5 @@
 vim.g.trans = true
 vim.g.scheme = "cyberdream"
- 
 
 options = {
       icons = {

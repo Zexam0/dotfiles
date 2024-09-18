@@ -8,6 +8,9 @@ return {
 		statusline.section_location = function()
 			return '%2l:%-2v'
 		end
+		statusline.section_filename = function()
+			return '%t'
+		end
 	end,
 },
 
