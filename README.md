@@ -25,3 +25,10 @@ Then use GNU stow to create the symlinks
 $ stow .
 ```
 
+## Terminal config
+
+Check which terminal you're using and then you can use this to load it
+
+```
+$ dconf load /org/gnome/terminal/legacy/profiles:/ < gnome_settings.txt
+```

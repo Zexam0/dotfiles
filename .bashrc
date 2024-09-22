@@ -57,7 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PROMPT_CHAR="❯"
+    # PS1='\[\033[01;32m\]'\[033[01;32m\]\w\[\033[00m\]$PROMPT_CHAR'
+    PS1=" \[\033[01;36m\]\w\[\033[01;32m\] ${PROMPT_CHAR} \[\033[25;01;38;5;255m\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -122,4 +124,4 @@ fi
 
 # change the number of trailing directory viewed in the terminal
 PROMPT_DIRTRIM=2
-neofetch
+printf "\n"
