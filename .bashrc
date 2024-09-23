@@ -108,7 +108,11 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions ]; 
+    . ~/.bash_functions 
+fi
+
+if [ -f ~/.bash_spec ]; then
+    . ~/.bash_spec 
 fi
 
 # enable programmable completion features (you don't need to enable
