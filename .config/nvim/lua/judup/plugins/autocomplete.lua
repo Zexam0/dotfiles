@@ -1,5 +1,4 @@
 return {
-
 {
     "hrsh7th/nvim-cmp",
     event = 'InsertEnter',
@@ -7,7 +6,7 @@ return {
         {
             "L3MON4D3/LuaSnip",
             build = (function()
-            
+
                 if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
                     return
                 end
@@ -37,6 +36,7 @@ return {
                 ['<C-n>'] = cmp.mapping.select_next_item(),
                 ['<C-p>'] = cmp.mapping.select_prev_item(),
                 ['<C-y>'] = cmp.mapping.confirm { select = true },
+                ['<C-r>'] = cmp.mapping.complete(),
             },
             sources = {
                 {

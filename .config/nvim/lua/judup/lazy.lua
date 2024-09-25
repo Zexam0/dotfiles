@@ -24,9 +24,9 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- import your plugins
+    -- Import your plugins
     { import = "judup.plugins" },
-  }, 
+  },
 })
 
 vim.cmd.colorscheme(vim.g.scheme)
