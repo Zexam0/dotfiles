@@ -57,9 +57,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PROMPT_CHAR="❯"
+    PROMPT_CHAR1=" "
+    PROMPT_CHAR2=""
     # PS1='\[\033[01;32m\]'\[033[01;32m\]\w\[\033[00m\]$PROMPT_CHAR'
-    PS1=" \[\033[01;36m\]\w\[\033[01;32m\] ${PROMPT_CHAR} \[\033[25;01;38;5;255m\]"
+    PS1=" \[\033[01;35m\][\[\033[34m\]\w\[\033[35m\]]\n \[\033[32m\]${PROMPT_CHAR2} \[\033[00;37m\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
