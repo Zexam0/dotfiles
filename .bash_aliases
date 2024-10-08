@@ -18,9 +18,8 @@ alias ggf="git log --graph --date=short --pretty=format:'%C(auto)%h %Cgreen%an%C
 alias gll='git log --graph --pretty=oneline --abbrev-commit'
 alias gs="git status"
 alias ga="git add"
-alias gc="git commit -m"
-alias ga="git add"
 alias gaa="git add ."
+alias gc="git commit -m"
 alias gph="git push"
 alias gpl="git pull"
 
