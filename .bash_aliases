@@ -19,7 +19,7 @@ alias gll='git log --graph --pretty=oneline --abbrev-commit'
 alias gs="git status"
 alias ga="git add"
 alias gaa="git add ."
-function gcm () { echo "git commit -m \"$*\"" && git commit -m "$*"; }
+function gci () { echo "git commit -m \"$*\"" && git commit -m "$*"; }
 alias gph="git push"
 alias gpl="git pull"
 
