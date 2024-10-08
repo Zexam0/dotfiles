@@ -19,7 +19,7 @@ alias gll='git log --graph --pretty=oneline --abbrev-commit'
 alias gs="git status"
 alias ga="git add"
 alias gaa="git add ."
-alias gc="git commit -m"
+function gcm () { echo "git commit -m \"$*\"" && git commit -m "$*"; }
 alias gph="git push"
 alias gpl="git pull"
 
@@ -33,4 +33,6 @@ brc () {
     printf '\e[3F\e[J'
 }
 
-
+function tst () {
+    echo "$*"
+}
