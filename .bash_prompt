@@ -27,29 +27,31 @@ _parse_git () {
     local ADDED=$(echo "$STATUS" | grep "A" | wc -l)
     local DELETED=$(echo "$STATUS" | grep "D" | wc -l)
     local MODIFIED=$(echo "$STATUS" | grep "M" | wc -l)
-    local STATS=''
+    local STATS=' '
     local GIT_BRANCH=$(echo $(__git_ps1) | awk -F'[()]' '{ print $2 }')
 
-    if [[ $NEW != 0 ]]; then
-        STATS+="${CYAN}  $NEW" 
-    fi
-    if [[ $ADDED != 0 ]]; then
-        STATS+="${GREEN}  $ADDED" 
-    fi
-    if [[ $DELETED != 0 ]]; then
-        STATS+="${RED}  $DELETED" 
-    fi
+    if [[ $GIT_STATUS == "" ]]; then
+        if [[ $NEW != 0 ]]; then
+            STATS+="${CYAN}| $NEW" 
+        fi
+        if [[ $ADDED != 0 ]]; then
+            STATS+="${GREEN}|  $ADDED" 
+        fi
+        if [[ $DELETED != 0 ]]; then
+            STATS+="${RED}| $DELETED" 
+        fi
 
-    if [[ $MODIFIED != 0 ]]; then
-        STATS+="${YELLOW}  $MODIFIED"
-    fi
+        if [[ $MODIFIED != 0 ]]; then
+            STATS+="${YELLOW}| $MODIFIED"
+        fi
+        if [[ -z "$STATUS" ]]; then 
+            echo "${GREEN}${GIT_BRANCH}"
+        else
+            echo "${YELLOW} ${GIT_BRANCH}${COLOR_NONE}${STATS}|"
+        fi
 
-    if [[ $GIT_BRANCH == "" ]]; then
-        echo ""
-    elif [[ -z "$STATUS" ]]; then 
-        echo "${GREEN}${GIT_BRANCH}"
     else
-        echo "${YELLOW}${GIT_BRANCH}${COLOR_NONE}${STATS}"
+        echo ""
     fi
 }
 
