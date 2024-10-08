@@ -21,7 +21,7 @@ alias ga="git add"
 alias gc="git commit -m"
 alias ga="git add"
 alias gaa="git add ."
-alias gps="git push"
+alias gph="git push"
 alias gpl="git pull"
 
 # mkdir with argument and cd into created directory
