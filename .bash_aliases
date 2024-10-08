@@ -17,7 +17,10 @@ alias gg='git log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%
 alias ggf="git log --graph --date=short --pretty=format:'%C(auto)%h %Cgreen%an%Creset %Cblue%cd%Creset %C(auto)%d %s' -n 5"
 alias gll='git log --graph --pretty=oneline --abbrev-commit'
 alias gs="git status"
-
+alias ga="git add"
+alias gc="git commit -m"
+alias ga="git add"
+alias gaa="git add ."
 
 # mkdir with argument and cd into created directory
 mkcd () { mkdir "$@" && cd "$_"; }
