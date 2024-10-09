@@ -19,7 +19,7 @@ vim.opt.swapfile = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'no'
 
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
