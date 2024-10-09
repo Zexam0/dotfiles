@@ -23,8 +23,9 @@ LIGHT_CYAN="\[\033[1;36m\]"
 
 _parse_git () {
     local STATUS=$(git status --porcelain -u 2>/dev/null)
-    local NEW=$(echo "$STATUS" | grep "??" | wc -l)
-    local ADDED=$(echo "$STATUS" | grep "A" | wc -l)
+    local STAGED=$(git diff --name-only --cached 2>/dev/null | wc -l)
+    local UNSTAGED=$(git diff --name-only 2>/dev/null | wc -l)
+    local NEW=$(echo "$STATUS" | grep "??\|A" | wc -l)
     local DELETED=$(echo "$STATUS" | grep "D" | wc -l)
     local MODIFIED=$(echo "$STATUS" | grep "M" | wc -l)
     local STATS=' '
@@ -33,9 +34,6 @@ _parse_git () {
     if [[ $GIT_STATUS == "" ]]; then
         if [[ $NEW != 0 ]]; then
             STATS+="${CYAN}| $NEW" 
-        fi
-        if [[ $ADDED != 0 ]]; then
-            STATS+="${GREEN}|  $ADDED" 
         fi
         if [[ $DELETED != 0 ]]; then
             STATS+="${RED}| $DELETED" 
@@ -47,7 +45,7 @@ _parse_git () {
         if [[ -z "$STATUS" ]]; then 
             echo "${GREEN}${GIT_BRANCH}"
         else
-            echo "${YELLOW} ${GIT_BRANCH}${COLOR_NONE}${STATS}|"
+            echo "${YELLOW} ${GIT_BRANCH} ${MAGENTA}󰱒 ${STAGED} 󰄱 ${UNSTAGED}${COLOR_NONE}${STATS}|"
         fi
 
     else
