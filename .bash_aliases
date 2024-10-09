@@ -27,8 +27,7 @@ alias gpl="git pull"
 mkcd () { mkdir "$@" && cd "$_"; }
 
 brc () { 
-    . ~/.bashrc
-    printf 'Reloaded!'
+    . ~/.bashrc && printf 'Reloaded!'
     sleep 0.5
     printf '\e[3F\e[J'
 }
