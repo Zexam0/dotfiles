@@ -43,9 +43,9 @@ _parse_git () {
             STATS+="${YELLOW}| $MODIFIED"
         fi
         if [[ -z "$STATUS" ]]; then 
-            echo "${GREEN}${GIT_BRANCH}"
+            echo "${GREEN} ${GIT_BRANCH}"
         else
-            echo "${YELLOW} ${GIT_BRANCH} ${MAGENTA}󰱒 ${STAGED} 󰄱 ${UNSTAGED}${COLOR_NONE}${STATS}|"
+            echo "${YELLOW} ${GIT_BRANCH} ${MAGENTA}󰱒 ${STAGED} 󰄱 ${UNSTAGED}${COLOR_NONE}${STATS}|"
         fi
 
     else
