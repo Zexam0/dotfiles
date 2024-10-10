@@ -191,3 +191,4 @@ bar {
 }
 
 include style.conf
+include exit.conf
