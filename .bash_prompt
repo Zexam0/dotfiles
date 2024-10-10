@@ -31,7 +31,7 @@ _parse_git () {
     local STATS=' '
     local GIT_BRANCH=$(echo $(__git_ps1) | awk -F'[()]' '{ print $2 }')
 
-    if [[ $GIT_STATUS == "" ]]; then
+    if [[ $(echo "$GIT_BRANCH" | wc -w) != 0 ]]; then
         if [[ $NEW != 0 ]]; then
             STATS+="${CYAN}| $NEW" 
         fi
