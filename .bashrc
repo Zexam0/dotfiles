@@ -122,6 +122,9 @@ if [ -f ~/.bash_spec ]; then
     . ~/.bash_spec 
 fi
 
+if [ -f ~/.bash_bwauth ]; then
+    . ~/.bash_bwauth
+fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -135,4 +138,5 @@ fi
 
 # change the number of trailing directory viewed in the terminal
 PROMPT_DIRTRIM=2
+export PATH="$HOME/.cargo/bin:$PATH"
 printf "\n"
