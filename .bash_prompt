@@ -25,27 +25,31 @@ _parse_git () {
     local STATUS=$(git status --porcelain -u 2>/dev/null)
     local STAGED=$(git diff --name-only --cached 2>/dev/null | wc -l)
     local UNSTAGED=$(git diff --name-only 2>/dev/null | wc -l)
-    local NEW=$(echo "$STATUS" | grep "??\|A" | wc -l)
+    local NEW=$(echo "$STATUS" | grep "??" | wc -l)
+    local ADDED=$(echo "$STATUS" | grep "A" | wc -l)
     local DELETED=$(echo "$STATUS" | grep "D" | wc -l)
     local MODIFIED=$(echo "$STATUS" | grep "M" | wc -l)
-    local STATS=' '
+    local UNTRACKED=$(echo "$STATUS" | grep "??" | wc -l) 
+    local STATS=''
     local GIT_BRANCH=$(echo $(__git_ps1) | awk -F'[()]' '{ print $2 }')
 
     if [[ $(echo "$GIT_BRANCH" | wc -w) != 0 ]]; then
-        if [[ $NEW != 0 ]]; then
-            STATS+="${CYAN}| $NEW" 
+        if [[ $NEW != 0 ]] || [[ $ADDED != 0 ]]; then
+            local greater=$(($NEW > $ADDED ? $NEW : $ADDED))
+            STATS+="${CYAN}< ${greater}> " 
         fi
         if [[ $DELETED != 0 ]]; then
-            STATS+="${RED}| $DELETED" 
+            STATS+="${RED}< $DELETED> " 
         fi
 
         if [[ $MODIFIED != 0 ]]; then
-            STATS+="${YELLOW}| $MODIFIED"
+            STATS+="${YELLOW}< $MODIFIED> "
         fi
         if [[ -z "$STATUS" ]]; then 
             echo "${GREEN} ${GIT_BRANCH}"
         else
-            echo "${YELLOW} ${GIT_BRANCH} ${MAGENTA}󰱒 ${STAGED} 󰄱 ${UNSTAGED}${COLOR_NONE}${STATS}|"
+            local TOTAL=$(($NEW+$UNSTAGED))
+            echo "${YELLOW} ${GIT_BRANCH} ${MAGENTA}󰱒 ${STAGED} 󰄱 ${TOTAL}${COLOR_NONE} ${STATS}"
         fi
 
     else
