@@ -1,0 +1,4 @@
+BasedOnStyle: WebKit
+AlignAfterOpenBracket: Align
+IndentWidth: 4
+BreakBeforeBraces: Attach

@@ -91,7 +91,12 @@ return {
 				},
 
 				cmake = {},
-				clangd = {},
+				clangd = {
+          cmd = {
+            'clangd',
+            '--fallback-style=WebKit',
+          },
+        },
 			}
 
 			require("mason").setup()
