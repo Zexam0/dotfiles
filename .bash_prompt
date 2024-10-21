@@ -60,11 +60,13 @@ _parse_git () {
 # PS1='\[\033[01;32m\]'\[033[01;32m\]\w\[\033[00m\]$PROMPT_CHAR'
 
 _set_PS1 () {
+    _es="$?"
+    if [[ $_es == 0 ]]; then __PS1_ES="${GREEN} 0"; else __PS1_ES="${RED} 1"; fi
     __PS1_dir="${LIGHT_MAGENTA}[ ${LIGHT_BLUE}\w ${LIGHT_MAGENTA}] "
     __PS1_GIT="$(_parse_git) \n"
     __PS1_CHAR="${GREEN}  ${LIGHT_GRAY}"
 
-    PS1="${__PS1_dir}${__PS1_GIT}${__PS1_CHAR}"
+    PS1="${__PS1_dir}${__PS1_GIT}${__PS1_ES}${__PS1_CHAR}"
 }
 
 PROMPT_COMMAND="_set_PS1;"
