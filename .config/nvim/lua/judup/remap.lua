@@ -19,3 +19,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Greatest Keymap ever
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+local chars = { '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' }
+
+for _, char in ipairs(chars) do
+  vim.api.nvim_set_keymap('x', 'i' .. char, ':<C-u>normal! T' .. char .. 'vt' .. char .. '<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('o', 'i' .. char, ':normal vi' .. char .. '<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('x', 'a' .. char, ':<C-u>normal! F' .. char .. 'vf' .. char .. '<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('o', 'a' .. char, ':normal va' .. char .. '<CR>', { noremap = true, silent = true })
+end
