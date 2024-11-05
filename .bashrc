@@ -142,9 +142,7 @@ PROMPT_DIRTRIM=2
 # Add cargo bin directory to path
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Formating
-printf "\n"
-
 # Init setups for fzf, zoxide
+source ~/.git-prompt.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(zoxide init --cmd cd bash)"

@@ -56,7 +56,7 @@ return {
   {
     "folke/tokyonight.nvim",
     priority = 1000,
-    lazy = true,
+    lazy = false,
     opt = {
       transparent = vim.g.trans,
       styles = {
@@ -68,7 +68,7 @@ return {
   {
     "scottmckendry/cyberdream.nvim",
     priority = 1000,
-    lazy = true,
+    lazy = false,
     opt = {
       transparent = vim.g.trans,
     },
@@ -76,7 +76,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     priority = 1000,
-    lazy = true,
+    lazy = false,
     opt = {
       transparent = vim.g.trans,
     },
@@ -84,7 +84,7 @@ return {
   {
     "morhetz/gruvbox",
     priority = 1000,
-    lazy = true,
+    lazy = false,
     opt = { 
       transparent = vim.g.trans,
     },
