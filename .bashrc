@@ -122,9 +122,6 @@ if [ -f ~/.bash_spec ]; then
     . ~/.bash_spec 
 fi
 
-if [ -f ~/.bash_bwauth ]; then
-    . ~/.bash_bwauth
-fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -143,6 +140,22 @@ PROMPT_DIRTRIM=2
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Init setups for fzf, zoxide
-source ~/.git-prompt.sh
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "$(zoxide init --cmd cd bash)"
+source ~/.git-prompt.sh 2>/dev/null
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash 2>/dev/null
+eval "$(zoxide init --cmd cd bash 2>/dev/null)"
+
+# Tmux on startup (on each new shell)
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+
+    line_count=$(tmux ls | wc -l)
+    printf "${line_count}\n"
+    if [ 0 -eq ${line_count} ]; then
+        tmux new -s 1;
+    else 
+        newSess=$((line_count+1))
+        printf "${newSess}\n"
+        tmux new -s "${newSess}";
+    fi
+fi
+
+. "$HOME/.cargo/env"
