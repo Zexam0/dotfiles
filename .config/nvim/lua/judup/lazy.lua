@@ -33,4 +33,6 @@ vim.cmd.colorscheme(vim.g.scheme)
 
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
-vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+vim.cmd("hi TelescopeBorder guibg=NONE ctermbg=NONE")
+vim.cmd("hi LineNR guibg=NONE ctermbg=NONE")
+vim.cmd("hi CursorLineNR guibg=NONE ctermbg=NONE")

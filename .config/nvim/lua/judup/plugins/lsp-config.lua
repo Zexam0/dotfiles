@@ -18,7 +18,17 @@ return {
 				group = vim.api.nvim_create_augroup("Personal-lsp-attach", { clear = true }),
 				callback = function(event)
 					-- Format Text using lsp
-					vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
+					local map = function(keys, func, desc, mode)
+						mode = mode or "n"
+						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					end
+
+					map("<leader>lf", vim.lsp.buf.format, "Format file")
+					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
 						local highlight_augroup =
@@ -92,11 +102,11 @@ return {
 
 				cmake = {},
 				clangd = {
-          cmd = {
-            'clangd',
-            '--fallback-style=WebKit',
-          },
-        },
+					cmd = {
+						"clangd",
+						"--fallback-style=WebKit",
+					},
+				},
 			}
 
 			require("mason").setup()

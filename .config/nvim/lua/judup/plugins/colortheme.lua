@@ -1,5 +1,5 @@
 vim.g.trans = true
-vim.g.scheme = "cyberdream"
+vim.g.scheme = "kanagawa-wave"
 
 options = {
   icons = {
