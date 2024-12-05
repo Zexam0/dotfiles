@@ -150,8 +150,8 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
     line_count=$(tmux ls | wc -l)
     printf "${line_count}\n"
     if [ 0 -eq ${line_count} ]; then
-        tmux new -s 1;
-    else 
+        tmux a -s 1 || tmux new -s 1;
+    else
         newSess=$((line_count+1))
         printf "${newSess}\n"
         tmux new -s "${newSess}";

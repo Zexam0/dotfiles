@@ -5,6 +5,10 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+exec xrandr --output HDMI-0 --rotate left
+exec xrandr --output HDMI-0 --left-of DP-2
+exec xrandr --output DP-2 --mode 1920x1080 --rate 165.00 --pos 1050x320
+
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
