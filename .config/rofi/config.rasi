@@ -12,6 +12,14 @@ configuration{
     display-window: " 󰕰  Window";
     display-Network: " 󰤨  Network";
     sidebar-mode: true;
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-remove-char-back: "BackSpace,Shift+BackSpace";
+    kb-mode-complete: "";
+    kb-remove-to-eol: "";
+    kb-row-left: "Control+h";
+    kb-row-right: "Control+l";
+    kb-row-up: "Control+k";
+    kb-row-down: "Control+j";
 }
 
 @theme "catppuccin-frappe"
