@@ -38,6 +38,10 @@ brc () {
     printf '\e[3F\e[J'
 }
 
+ffprobe () {
+    command ffprobe -hide_banner "$@";
+}
+
 function tst () {
     echo "$*"
 }
