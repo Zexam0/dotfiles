@@ -25,9 +25,13 @@ return {
       dap.listeners.before.disconnect.dapui_config = function()
         dapui.close()
       end
-      vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
-      vim.keymap.set("n", "<leader>dc", dap.continue, {})
+      vim.keymap.set("n", "<F5>", dap.continue, {})
+      vim.keymap.set("n", "<F10>", dap.step_over,{})
+      vim.keymap.set("n", "<F11>", dap.step_into,{})
+      vim.keymap.set("n", "<F12>", dap.step_out,{})
       vim.keymap.set("n", "<leader>dq", dap.terminate, {})
+      vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, {})
+      vim.keymap.set("n", "<leader>B", dap.set_breakpoint, {})
 
       local daps = { "cppdbg" }
       require("mason").setup()
