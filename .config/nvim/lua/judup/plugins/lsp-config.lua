@@ -26,7 +26,7 @@ return {
 					map("<leader>lf", vim.lsp.buf.format, "Format file")
 					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					map("<leader>gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)

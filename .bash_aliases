@@ -18,16 +18,18 @@ alias la="ls --all"
 alias tree="ls --tree --level=2"
 
 
-# Git status log and status 
+# Git alias
 alias gg="git log --graph --date=short --pretty=format:'%C(auto)%h %Cgreen%an%Creset %Cblue%cd%Creset %C(auto)%d %s' -n 5"
 alias gll='git log --graph --pretty=oneline --abbrev-commit'
 alias gs="git status"
 alias ga="git add"
 alias gaa="git add ."
 alias gd="git diff"
+alias gr="git restore"
 alias gci="git commit -m"
 alias gph="git push"
 alias gpl="git pull"
+
 
 # mkdir with argument and cd into created directory
 mkcd () { mkdir "$@" && cd "$_"; }
