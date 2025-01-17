@@ -1,10 +1,10 @@
 vim.g.mapleader = " "
 
 -- Some easier mappings
-vim.keymap.set("n", "<leader>pp", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>h", vim.cmd.tabprev)
-vim.keymap.set("n", "<leader>l", vim.cmd.tabnext)
-vim.keymap.set("n", "<leader>x", vim.cmd.tabc)
+vim.keymap.set("n", "<leader>pp", ":Telescope file_browser<CR>")
+vim.keymap.set("n", "<leader>h", vim.cmd.bprev)
+vim.keymap.set("n", "<leader>l", vim.cmd.bnext)
+vim.keymap.set("n", "<leader>x", vim.cmd.bc)
 
 -- Bol Eol easier mappings
 vim.keymap.set("n", "H", "^")
