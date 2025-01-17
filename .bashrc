@@ -139,10 +139,11 @@ PROMPT_DIRTRIM=2
 # Add cargo bin directory to path
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Init setups for fzf, zoxide
+# Init setups for fzf, zoxide, Java
 source ~/.git-prompt.sh 2>/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash 2>/dev/null
 eval "$(zoxide init --cmd cd bash 2>/dev/null)"
+export JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64'
 
 # Tmux on startup (on each new shell)
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
