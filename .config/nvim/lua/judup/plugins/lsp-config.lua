@@ -23,7 +23,7 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					map("<leader>gf", vim.lsp.buf.format, "Format file")
+					map("gf", vim.lsp.buf.format, "Format file")
 					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
