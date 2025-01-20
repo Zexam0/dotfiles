@@ -6,6 +6,9 @@ vim.keymap.set("n", "<leader>h", vim.cmd.bprev)
 vim.keymap.set("n", "<leader>l", vim.cmd.bnext)
 vim.keymap.set("n", "<leader>x", vim.cmd.bc)
 
+-- Correct Escape key for terminal mode
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
 -- Bol Eol easier mappings
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
