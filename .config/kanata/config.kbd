@@ -3,29 +3,41 @@
 )
 
 (defsrc
-    caps
-    ;
-    k
+    caps k ;
     1 2 3 4 5 6 7 8 9 0
+    pgup
 )
 
 (defalias 
     escctrl (tap-hold 150 150 esc lctrl)
     ;-mod (tap-hold 150 150 ; lmet)
-    fx (layer-while-held FX)
-    k-fn (tap-hold 300 300 k @fx)
+    Fx (layer-while-held F)
+    k-fn (tap-hold 300 300 k @Fx)
+    comp (layer-switch Changer)
+    Gamex (layer-switch Game)
+    Basex (layer-switch Base)
 )
 
-(deflayer base
-    @escctrl
-    @;-mod
-    @k-fn
+(deflayer Base
+    @escctrl @k-fn @;-mod
     1 2 3 4 5 6 7 8 9 0
+    @comp
 )
 
-(deflayer FX
+(deflayer Game
+    _ _ _
+    _ _ _ _ _ _ _ _ _ _ 
+    @comp
+)
+
+(deflayer Changer
+    _ _ _
+    @Basex @Gamex _ _ _ _ _ _ _ _
     _
-    _
-    _
+)
+
+(deflayer F
+    caps _ _
     F1 F2 F3 F4 F5 F6 F7 F8 F9 F10
+    _
 )
