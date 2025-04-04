@@ -161,3 +161,4 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 . "$HOME/.cargo/env" 2> /dev/null
+set -o vi
