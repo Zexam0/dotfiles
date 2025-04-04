@@ -27,6 +27,7 @@ return {
           map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
           map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
           map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+          map("<leader>g?", vim.diagnostic.open_float, "Open Diagnostic in floating window")
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
