@@ -136,8 +136,9 @@ fi
 # change the number of trailing directory viewed in the terminal
 PROMPT_DIRTRIM=2
 
-# Add cargo bin directory to path
+# Add needed directories to path
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/texlive/2025/bin/x86_64-linux:$PATH"
 
 # Init setups for fzf, zoxide, Java, Ocaml
 source ~/.git-prompt.sh 2>/dev/null
