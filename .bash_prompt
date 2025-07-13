@@ -21,40 +21,64 @@ LIGHT_CYAN="\[\033[1;36m\]"
 
 ##########################################
 
+staged_added=0
+staged_modified=0
+staged_deleted=0
+unstaged_added=0
+unstaged_modified=0
+unstaged_deleted=0
+
 _parse_git () {
-    local STATUS=$(git status --porcelain -u 2>/dev/null)
-    local STAGED=$(git diff --name-only --cached 2>/dev/null | wc -l)
-    local UNSTAGED=$(git diff --name-only 2>/dev/null | wc -l)
-    local NEW=$(echo "$STATUS" | grep "??" | wc -l)
-    local ADDED=$(echo "$STATUS" | grep "A" | wc -l)
-    local DELETED=$(echo "$STATUS" | grep "D" | wc -l)
-    local MODIFIED=$(echo "$STATUS" | grep "M" | wc -l)
-    local UNTRACKED=$(echo "$STATUS" | grep "??" | wc -l) 
-    local STATS=''
     local GIT_BRANCH=$(echo $(__git_ps1) | awk -F'[()]' '{ print $2 }')
-
+    local PROMPT=""
     if [[ $(echo "$GIT_BRANCH" | wc -w) != 0 ]]; then
-        if [[ $NEW != 0 ]] || [[ $ADDED != 0 ]]; then
-            local greater=$(($NEW > $ADDED ? $NEW : $ADDED))
-            STATS+="${CYAN}< ${greater}> " 
-        fi
-        if [[ $DELETED != 0 ]]; then
-            STATS+="${RED}< $DELETED> " 
-        fi
+        local STATUS=$(git status --porcelain -u 2>/dev/null)
+        if [[ -n $STATUS ]]; then
+            while IFS= read -r line; do 
+                staged=${line:0:1}
+                unstaged=${line:1:1}
 
-        if [[ $MODIFIED != 0 ]]; then
-            STATS+="${YELLOW}< $MODIFIED> "
-        fi
-        if [[ -z "$STATUS" ]]; then 
-            echo "${GREEN} ${GIT_BRANCH}"
+                case "$staged" in
+                    'A') ((staged_added++)) ;;
+                    'M') ((staged_modified++)) ;;
+                    'D') ((staged_deleted++)) ;;
+                esac
+
+                case "$unstaged" in
+                    '?') ((unstaged_added++)) ;;
+                    'M') ((unstaged_modified++)) ;;
+                    'D') ((unstaged_deleted++)) ;;
+                esac
+            done < <(git status --porcelain -u 2>/dev/null)
+
+            STAGED=$((staged_added+staged_modified+staged_deleted))
+            ADDED=$((unstaged_added+staged_added))
+            MODIFIED=$((unstaged_modified+staged_modified))
+            DELETED=$((unstaged_deleted+staged_deleted))
+            UNSTAGED=$((unstaged_added+unstaged_modified+unstaged_deleted))
+
+            if [[ STAGED != 0 ]]; then 
+                PROMPT+="${MAGENTA} ${STAGED} "
+            fi
+            if [[ UNSTAGED != 0 ]]; then 
+                PROMPT+=" ${UNSTAGED} "
+            fi
+            if [[ ADDED != 0 ]]; then 
+                PROMPT+="${CYAN} ${ADDED} "
+            fi
+            if [[ MODIFIED != 0 ]]; then 
+                PROMPT+="${YELLOW} ${MODIFIED} "
+            fi
+            if [[ DELETED != 0 ]]; then 
+                PROMPT+="${RED} ${DELETED}"
+            fi
+            
+            PROMPT="$RED$GIT_BRANCH $PROMPT$COLOR_NONE"
         else
-            local TOTAL=$(($NEW+$UNSTAGED))
-            echo "${YELLOW} ${GIT_BRANCH} ${MAGENTA}󰱒 ${STAGED} 󰄱 ${TOTAL}${COLOR_NONE} ${STATS}"
-        fi
-
-    else
-        echo ""
+            PROMPT="$GREEN$GIT_BRANCH $COLOR_NONE"
+        fi 
     fi
+    echo "$PROMPT"
 }
 
 # PS1='\[\033[01;32m\]'\[033[01;32m\]\w\[\033[00m\]$PROMPT_CHAR'
@@ -62,7 +86,7 @@ _parse_git () {
 _set_PS1 () {
     _es="$?"
     if [[ $_es == 0 ]]; then __PS1_ES="${GREEN} 0"; else __PS1_ES="${RED} ${_es}"; fi
-    __PS1_dir="\n${LIGHT_MAGENTA}[ ${LIGHT_BLUE}\w ${LIGHT_MAGENTA}] "
+    __PS1_dir="\n${LIGHT_MAGENTA}[ ${LIGHT_BLUE}\w ${LIGHT_MAGENTA}] ${COLOR_NONE}"
     __PS1_GIT="$(_parse_git) \n"
     __PS1_CHAR="${GREEN}  ${LIGHT_GRAY}"
 
