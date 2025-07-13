@@ -4,6 +4,7 @@ return {
     opts = {
       file_types = { 'markdown' },
       enabled = true,
+      latex = { enabled = false },
     },
   },
 }
