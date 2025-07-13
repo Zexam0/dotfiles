@@ -4,7 +4,7 @@ Documentation=https://github.com/jtroo/kanata
 
 [Service]
 Type=simple
-ExecStart=/home/julien/.cargo/bin/kanata --cfg /home/julien/.config/kanata/config.kbd
+ExecStart=/usr/bin/kanata --cfg /home/Julien/.config/kanata/config.kbd
 Restart=no
 
 [Install]

@@ -106,6 +106,7 @@ return {
             "--fallback-style=Google",
           },
         },
+
         texlab = {
           bibtexFormatter = "texlab",
           build = {
@@ -127,7 +128,7 @@ return {
           latexindent = {
             modifyLineBreaks = false,
           }
-        }
+        },
       }
 
       require("mason").setup()

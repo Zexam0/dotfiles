@@ -12,8 +12,8 @@ sudo cp ${COMPOSE_FILE} ${COMPOSE_FILE}.bak
 # sudo cp ${GTK3_FILE} ${GTK3_FILE}.bak
 #
 # # Fixing cedilla in Compose
-# sudo sed --in-place -e 's/ć/ç/g' ${COMPOSE_FILE}
-# sudo sed --in-place -e 's/Ć/Ç/g' ${COMPOSE_FILE}
+sudo sed --in-place -e 's/ć/ç/g' ${COMPOSE_FILE}
+sudo sed --in-place -e 's/Ć/Ç/g' ${COMPOSE_FILE}
 #
 # # Fixing cedilla in GTK files
 # GTK_FILE_SEARCH_FOR='^"cedilla".*:en'
