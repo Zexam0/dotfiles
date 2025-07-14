@@ -66,14 +66,6 @@ return {
     },
   },
   {
-    "scottmckendry/cyberdream.nvim",
-    priority = 1000,
-    lazy = false,
-    opt = {
-      transparent = vim.g.trans,
-    },
-  },
-  {
     "rebelot/kanagawa.nvim",
     priority = 1000,
     lazy = false,
