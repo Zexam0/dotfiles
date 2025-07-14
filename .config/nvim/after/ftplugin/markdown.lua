@@ -1,6 +1,7 @@
 local prev_col_name = nil
 local prev_bg_col = nil
 
+-- Detect markdown on enter and change colortheme
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*.md,*.markdown",
   callback = function()
@@ -20,6 +21,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- Detect closing markdown and restore colortheme
 vim.api.nvim_create_autocmd("BufLeave", {
   pattern = "*.md,*markdown",
   callback = function()
@@ -35,6 +37,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
   end,
 })
 
+-- Remove checkhealth from the markdown detection
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "checkhealth",
   callback = function()
