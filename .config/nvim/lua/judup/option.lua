@@ -49,5 +49,9 @@ vim.api.nvim_create_autocmd({"BufNewFile","BufRead"}, {
   callback = function() vim.opt.filetype = "asm" end,
 })
 
-
+-- Correct filetype for .bash* 
+vim.api.nvim_create_autocmd({"BufNewFile","BufRead"}, {
+  pattern = {"*.bash*"},
+  callback = function() vim.opt.filetype = "sh" end,
+})
 
