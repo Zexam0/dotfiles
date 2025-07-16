@@ -3,7 +3,6 @@
 alias "copy=xclip -selection clipboard"
 alias "paste=xclip -selection clipboard -o"
 
-
 # Common bash alias
 alias ..="cd .."
 alias ...="cd ../.."
