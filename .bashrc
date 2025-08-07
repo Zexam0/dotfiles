@@ -157,12 +157,14 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
     else
         newSess=$((line_count+1))
         printf "${newSess}\n"
-        tmux new -s "${newSess}";
+        tmux a -s "${newSess}" || tmux new -s "${newSess}";
     fi
 fi
 
 . "$HOME/.cargo/env" 2> /dev/null
 set -o vi
+export EDITOR=vim
+export VISUAL=vim
 
 PATH="/home/Julien/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/Julien/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
