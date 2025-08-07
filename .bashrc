@@ -147,6 +147,22 @@ eval "$(zoxide init --cmd cd bash 2>/dev/null)"
 export JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64'
 eval "$(opam env 2>/dev/null)" 
 
+
+. "$HOME/.cargo/env" 2> /dev/null
+set -o vi
+export EDITOR=vim
+export VISUAL=vim
+export LESS='-R'
+export PAGER='less'
+
+PATH="/home/Julien/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/Julien/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/Julien/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/Julien/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/Julien/perl5"; export PERL_MM_OPT;
+
+
+
 # Tmux on startup (on each new shell)
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 
@@ -160,14 +176,3 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
         tmux a -s "${newSess}" || tmux new -s "${newSess}";
     fi
 fi
-
-. "$HOME/.cargo/env" 2> /dev/null
-set -o vi
-export EDITOR=vim
-export VISUAL=vim
-
-PATH="/home/Julien/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/Julien/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/Julien/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/Julien/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/Julien/perl5"; export PERL_MM_OPT;
