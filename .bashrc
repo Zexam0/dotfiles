@@ -165,14 +165,10 @@ PERL_MM_OPT="INSTALL_BASE=/home/Julien/perl5"; export PERL_MM_OPT;
 
 # Tmux on startup (on each new shell)
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-
-    line_count=$(tmux ls | wc -l)
-    printf "${line_count}\n"
-    if [ 0 -eq ${line_count} ]; then
-        tmux a -s 1 || tmux new -s 1;
-    else
-        newSess=$((line_count+1))
-        printf "${newSess}\n"
-        tmux a -s "${newSess}" || tmux new -s "${newSess}";
+    tmux has-session -t main 2>/dev/null
+    if [ $? != 0 ]; then
+        tmux new-session -s main
+    else 
+        tmux attach -t main
     fi
 fi
