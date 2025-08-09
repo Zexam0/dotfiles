@@ -1,0 +1,31 @@
+[1;36m# regex[0m
+ [3m> TL;DR regex cheat sheet.[0m
+ [3m> Universal syntax (PCRE-style), may vary slightly per language.[0m
+ 
+ [1;33m- Basics:[0m
+ [32m.[0m → any char except newline
+ [32m^[0m → start of string
+ [32m$[0m → end of string
+ [32m\[0m → escape special char
+ 
+ [1;33m- Quantifiers:[0m
+ [32m*[0m → 0+ times
+ [32m+[0m → 1+ times
+ [32m?[0m → optional (0 or 1)
+ [32m{n}[0m → exactly n
+ [32m{n,}[0m → n or more
+ [32m{n,m}[0m → between n and m
+ 
+ [1;33m- Classes:[0m
+ [32m\d[0m digit [33m[0-9][0m
+ [32m\w[0m word char [33m[A-Za-z0-9_][0m
+ [32m\s[0m whitespace
+ [33m[abc][0m any of a,b,c
+ [33m[^abc][0m not a,b,c
+ 
+ [1;33m- Groups:[0m
+ [32m(abc)[0m capture
+ [32m(?:abc)[0m no capture
+ [32m(?=abc)[0m lookahead
+ [32m(?<=abc)[0m lookbehind
+
