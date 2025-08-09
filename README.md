@@ -22,6 +22,8 @@ $ cd dotfiles
 Then use GNU stow to create the symlinks 
 
 ```
+$ stow --adopt .
+$ git restore .
 $ stow .
 ```
 
