@@ -2,7 +2,7 @@
 
 languages=`echo "nodejs bash c cpp" | tr ' ' '\n'`
 postit=`echo "regex ANSI-esc-seq" | tr ' ' '\n'`
-core_utils=`echo "xargs chmod mv sed awk mkdir" | tr ' ' '\n'`
+core_utils=`echo "xargs chmod mv sed awk mkdir tar" | tr ' ' '\n'`
 
 selected=`printf "$languages\n$postit\n$core_utils" | fzf`
 
