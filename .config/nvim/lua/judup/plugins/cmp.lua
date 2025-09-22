@@ -17,6 +17,8 @@ return {
       local cmp = require 'cmp'
       local ls = require 'luasnip'
 
+      local map_opts = { 'i', 's' }
+
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -52,12 +54,22 @@ return {
             if ls.expand_or_locally_jumpable() then
               ls.expand_or_jump()
             end
-          end, { 'i', 's' }),
+          end, map_opts),
           ['<C-h>'] = cmp.mapping(function()
             if ls.locally_jumpable(-1) then
               ls.jump(-1)
             end
-          end, { 'i', 's' }),
+          end, map_opts),
+          ['<C-j>'] = cmp.mapping(function()
+            if ls.choice_active() then
+              ls.change_choice(1)
+            end
+          end, map_opts),
+          ['<C-k>'] = cmp.mapping(function()
+            if ls.choice_active() then
+              ls.change_choice(-1)
+            end
+          end, map_opts)
 
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
