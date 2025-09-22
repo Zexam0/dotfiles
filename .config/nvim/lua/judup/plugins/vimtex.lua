@@ -4,7 +4,7 @@ return {
     lazy = false,
     init = function()
       vim.g.vimtex_view_method = "zathura"
-      vim.g.vimtex_compiler_latexmk =  { options = { '-synctex=0' } }
+      vim.g.vimtex_compiler_latexmk =  { options = { '-synctex=0', '--shell-escape' } }
       vim.g.vimtex_mappings_enabled = 0
       vim.g.vimtex_format_enabled = 1
       vim.g.vimtex_format_method = "latexindent"
