@@ -18,7 +18,7 @@ return {
   % ==================================================
   %                   Packages
   % ==================================================
-  \documentclass{{{}}}
+  \documentclass[a4paper]{{article}}
 
   \usepackage[french]{{babel}}
   \usepackage[utf8]{{inputenc}}
@@ -29,6 +29,11 @@ return {
   \usepackage{{hyperref}}
   \usepackage{{wrapfig}}
   \usepackage{{caption}}
+  \usepackage{{listings}}
+  \usepackage{{graphicx}}
+  \usepackage{{minted}}
+  \usepackage{{environ}}
+  \usepackage{{xparse}}
 
   % ==================================================
   %                   Configuration
@@ -37,16 +42,41 @@ return {
   % Setting up the image path
   \graphicspath{{ {{./images/}} }}
 
-  % Change color of reference 
+  % Change color of reference
   \hypersetup{{colorlinks=true, linkcolor=DarkViolet}}
   \captionsetup{{font=footnotesize, justification=centering}}
+  \definecolor{{monokai-bg}}{{RGB}}{{39,40,34}}
+  \definecolor{{monokai-fg}}{{RGB}}{{248,248,242}}
 
-   % Change default typewrite font 
+   % Change default typewrite font
   \renewcommand\ttdefault{{fvm}}
 
+  \NewDocumentEnvironment{{codeOutput}}{{O{{console}} O{{style=monokai}} m}}
+  {{%
+    \VerbatimEnvironment
+    \begin{{listing}}[htp]
+    \caption{{#3}}%
+    \centering
+    \begin{{minted}}[#2]{{#1}}}}
+    {{\end{{minted}}\end{{listing}}
+   }}
+
+  \setminted{{
+    style=monokai,
+    bgcolor=monokai-bg,
+    frame=single,
+    fontsize=\scriptsize
+  }}
+
+  \AtBeginEnvironment{{minted}}{{\color{{monokai-fg}}}}
+
+  % New command
+  \newcommand{{\comptt}}[1]{{\texttt{{\scriptsize #1}}}}
+
   % Title, author
-  \title{{{}}}
-  \author{{{}}}
+  \title{{\textbf{{\Huge {}}}}}
+  \author{{\LARGE{{Dupuis Julien}}}}
+  \date{{}}
   %
 
   % ==================================================
@@ -57,10 +87,8 @@ return {
   {}
   \end{{document}}
   ]], {
-      i(1, "article"),
-      i(2, "Title"),
-      i(3, "Author"),
-      i(0)
-    })
+    i(1, "Title"),
+    i(0)
+  })
   )
 }
