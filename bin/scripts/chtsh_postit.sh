@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
 
-languages=`echo "nodejs bash c cpp" | tr ' ' '\n'`
-postit=`echo "regex ANSI-esc-seq" | tr ' ' '\n'`
-core_utils=`echo "xargs chmod mv sed awk mkdir tar" | tr ' ' '\n'`
+languages=(nodejs bash c cpp)
+postit=(regex ANSI-esc-seq)
+core_utils=(xargs chmod mv sed awk mkdir tar ln)
 
-selected=`printf "$languages\n$postit\n$core_utils" | fzf`
+selected=$(printf "%s\n" "${languages[@]}" "${postit[@]}" "${core_utils[@]}" | fzf)
 
-if printf $postit | grep -qs $selected; then
+if [[ " ${postit[*]} " == *" $selected "* ]]; then
     less -R "$HOME/dotfiles/postit/${selected}.txt"
     exit 0
-fi 
+elif [[ " ${core_utils[*]} " == *" $selected "* ]] ; then 
+    cht.sh $selected | less
+    exit 0
+fi
 
 read -p "query: " query
 
-if printf $languages | grep -qs $selected; then
-    curl cht.sh/$selected/`echo $query | tr ' ' '+'` | less
+if  [[ " ${languages[*]} " == *"$selected"* && -n "$query" ]]; then
+    cht.sh $selected $query | less
 else
-    curl cht.sh/$selected~$query | less
+    cht.sh $selected :learn | less
 fi
 
